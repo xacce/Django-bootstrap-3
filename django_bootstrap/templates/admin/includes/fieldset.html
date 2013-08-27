@@ -1,0 +1,63 @@
+{% load django_bootstrap %}
+{% load i18n %}
+<div class="panel panel-primary {{ fieldset.classes }}">
+    {#    {% if fieldset.name %}#}
+    <div class="panel-heading">{% if fieldset.name %}{% trans fieldset.name %}{% else %}{% trans "Name" %}{% endif %}</div>
+    {#    {% endif %}#}
+
+    {% if fieldset.description %}
+        <div class="description">{{ fieldset.description|safe }}</div>
+    {% endif %}
+    <div class="panel-body">
+        {% for line in fieldset %}
+            <div class="form-group {% if line.fields|length_is:'1' and line.errors %} has-error{% endif %}{% for field in line %}{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% endfor %}">
+                {% if line.fields|length_is:'1' %}
+                    {% if line.errors %}
+                        <div class="alert alert-danger">
+                            {{ line.errors }}
+                        </div>
+                    {% endif %}
+                {% endif %}
+                {% for field in line %}
+                    {#                <div{% if not line.fields|length_is:'1' %} class="field-box{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}"{% endif %}>#}
+                    {#                <div class="">#}
+                    {% if not line.fields|length_is:'1' and not field.is_readonly %}
+                        {{ field.errors }}
+                    {% endif %}
+                    {#                {% if field.is_checkbox %}#}
+                    {#                    <div class="col-lg">#}
+                    {#                        <div class="checkbox">#}
+                    {#                            <label>#}
+                    {#                                {{ field.field }}{{ field.label_tag|striptags }}#}
+                    {#                            </label>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                    {##}
+                    {#                {% else %}#}
+                    <div class="col-lg-3 control-label">
+                        {{ field.label_tag }}
+                    </div>
+                    <div class="col-lg-8">
+                        {% if field.is_readonly %}
+                            <p>{{ field.contents }}</p>
+                        {% else %}
+                            {% if not field.is_checkbox %}
+
+                                {{ field.field|add_css_class:"form-control" }}
+                            {% else %}
+                                {{ field.field|add_css_class:"form-2control" }}
+                            {% endif %}
+                        {% endif %}
+                        {% if field.field.help_text %}
+                            <span class="help-block">{{ field.field.help_text|safe }}</span>
+                        {% endif %}
+                    </div>
+                    {#                {% endif %}#}
+
+
+
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>

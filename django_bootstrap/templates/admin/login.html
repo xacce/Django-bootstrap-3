@@ -1,0 +1,73 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static %}
+{% load url from future %}
+
+{% block extrastyle %}{{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/login.css" %}"/>{% endblock %}
+{% block branding %}
+
+{% endblock %}
+{% block admin_header %} {% endblock %}
+{% block bodyclass %}login{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content_title %}{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+
+
+
+    <div id="content-main">
+        {#        <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}#}
+        {#            <div class="form-row">#}
+        {#                {% if not form.this_is_the_login_form.errors %}{{ form.username.errors }}{% endif %}#}
+        {#                <label for="id_username" class="required">{% trans 'Username:' %}</label> {{ form.username }}#}
+        {#            </div>#}
+        {#            <div class="form-row">#}
+        {#                {% if not form.this_is_the_login_form.errors %}{{ form.password.errors }}{% endif %}#}
+        {#                <label for="id_password" class="required">{% trans 'Password:' %}</label> {{ form.password }}#}
+        {#                <input type="hidden" name="this_is_the_login_form" value="1"/>#}
+        {#                <input type="hidden" name="next" value="{{ next }}"/>#}
+        {#            </div>#}
+        {#            {% url 'admin_password_reset' as password_reset_url %}#}
+        {#            {% if password_reset_url %}#}
+        {#                <div class="password-reset-link">#}
+        {#                    <a href="{{ password_reset_url }}">{% trans 'Forgotten your password or username?' %}</a>#}
+        {#                </div>#}
+        {#            {% endif %}#}
+        {#            <div class="submit-row">#}
+        {#                <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}"/>#}
+        {#            </div>#}
+        {#        </form>#}
+        <div class="col-lg-6 col-md-offset-3" style="margin-top: 20%">
+            <div class="panel panel-primary{% if form.errors and not form.non_field_errors and not form.this_is_the_login_form.errors %} panel-danger{% endif %}">
+
+                <div class="panel-heading">{% trans "Login" %}</div>
+                <div class="panel-body">
+                    <form action="{{ app_path }}" method="post" id="login-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="this_is_the_login_form" value="1"/>
+                        <input type="hidden" name="next" value="{{ next }}"/>
+                        <fieldset>
+                            <div class="form-group {% if  form.this_is_the_login_form.errors %}has-error{% endif %}">
+                                <label for="username">{% trans "Login" %}</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="{% trans "Enter username" %}">
+                            </div>
+                            <div class="form-group {% if  form.this_is_the_login_form.errors %}has-error{% endif %}">
+                                <label for="password">{% trans "Password" %}</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="{% trans "Enter password" %}">
+                                {% if not form.this_is_the_login_form.errors %}
+                                {% endif %}
+                            </div>
+                            <button type="submit" class="btn btn-default">{% trans "Enter" %}</button>
+                        </fieldset>
+                    </form>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

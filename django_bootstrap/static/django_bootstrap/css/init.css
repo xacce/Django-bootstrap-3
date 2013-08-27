@@ -1,0 +1,18 @@
+/*.vLargeTextField, textarea.form-control {*/
+/*min-height: 400px !important;*/
+/*}*/
+.add-another {
+    display: none
+}
+
+.list_preview_icon {
+    max-height: 50px;
+}
+
+/*.panel.panel-collapse {*/
+/*border: 0px !important;*/
+/*}*/
+
+/*.panel-collapse .panel-heading {*/
+/*cursor: pointer;*/
+/*}*/

@@ -1,0 +1,30 @@
+{% extends "admin_tools/dashboard/module.html" %}
+{% load i18n %}
+{% block module_content %}
+    {% for child in module.children %}
+        <h4><a href="{{ child.url }}">{{ child.title }}</a></h4>
+        <table class="table table-responsive">
+            <thead>
+            <tr>
+                <th style="width:70%">{% trans "Model" %}</th>
+                <th>{% trans "Action" %}</th>
+            </tr>
+            </thead>
+            {% for model in child.models %}
+                <tr>
+                    {% if model.change_url %}
+                        <td><a href="{{ model.change_url }}">{{ model.title }}</a>{% else %}{{ model.title }}</td>{% endif %}
+                    {% if model.add_url or model.change_url %}
+                        <td>
+                            {% if model.add_url %}
+                                <a class="addlink btn btn-default btn-mini" href="{{ model.add_url }}"><span class="glyphicon glyphicon-plus" title="{% trans "Add" %}"></span></a>{% endif %}
+                            &nbsp;
+                            {% if model.change_url %}
+                                <a class="changelink btn btn-default btn-mini" href="{{ model.change_url }}"><span class="glyphicon glyphicon-wrench" title="{% trans "Change" %}"></span></a>{% endif %}
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
+{% endblock %}

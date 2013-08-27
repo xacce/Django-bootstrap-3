@@ -1,0 +1,25 @@
+{% extends "admin/index.html" %}
+{% load i18n admin_tools_dashboard_tags %}
+{% load url from future %}
+{% if not is_popup %}
+
+    {% block dashboard_css %}{% admin_tools_render_dashboard_css 'app_index' %}{% endblock %}
+    {% block breadcrumbs %}
+        <ul class="breadcrumb  col-lg-12">
+            <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></li>
+            <li class="active">{% for app in app_list %}
+                {% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}
+            {% endfor %}</li>
+        </ul>
+
+    {% endblock %}
+
+{% endif %}
+
+{% block content %}
+    <div class="row">
+    <hr/>
+        {% admin_tools_render_dashboard 'app_index' %}
+    </div>
+{% endblock %}
+{% block sidebar %}{% endblock %}

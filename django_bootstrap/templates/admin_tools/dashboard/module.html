@@ -1,0 +1,23 @@
+{% if not module.is_empty %}
+    <div class="col-lg-6">
+        <div id="module_{{ module.id }}" class="panel panel-info">
+            {% block module_title %}{% if module.show_title %}
+                <div class="panel-heading">{{ module.title }}</div>{% endif %}{% endblock %}
+            {% spaceless %}
+                <div class="panel-body">
+                    {% if module.pre_content %}
+                        <p>{{ module.pre_content }}</p>
+                    {% endif %}
+                    {% block module_content %}
+                        {% for child in module.children %}
+                            {{ child }}
+                        {% endfor %}
+                    {% endblock %}
+                    {% if module.post_content %}
+                        <p>{{ module.post_content }}</p>
+                    {% endif %}
+                </div>
+            {% endspaceless %}
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,24 @@
+{% extends "admin_tools/dashboard/module.html" %}
+{% load i18n %}
+{% block module_content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>{% trans "Date" %}</th>
+            <th>{% trans "Action" %}</th>
+        </tr>
+        </thead>
+        {% for child in module.children %}
+            <tr>
+                <td>{{ child.action_time|date }}</td>
+                {% if child.is_deletion %}
+                    <td>{% if child.content_type %}{% filter capfirst %}{% trans child.content_type.name %}{% endfilter %}&nbsp;{% endif %}{{ child.object_repr }}</td>
+                {% else %}
+                    <td><a href="{{ admin_url }}{{ child.get_admin_url }}" class="{% if child.is_addition %} addlink{% endif %}{% if child.is_change %} changelink{% endif %}">{% if child.content_type %}{% filter capfirst %}{% trans child.content_type.name %}{% endfilter %}&nbsp;{% endif %}
+                        {{ child.object_repr }}</a></td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

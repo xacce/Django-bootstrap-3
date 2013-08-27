@@ -1,0 +1,40 @@
+{% load django_bootstrap %}
+
+<hr/>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-info xapload_gallery" data-upload_url="{% url djbo_upload content_type.pk object.pk %}">
+
+            <div class="hide">
+                <div class="xapload_tmpl"><img src="" class="img-thumbnail xapload_image"/>
+                    <button type="button" class="xapload_remove  btn btn-danger btn-small">&times;</button>
+                    <div class="progress ">
+                        <div class="progress-bar xapload_progress" role="progressbar"
+                             style="">
+                            <span class='sr-only xapload_progress_text'></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-heading">Gallery</div>
+            {% for rel in image_rels %}
+                {% if rel.image %}
+                    <div class="xapload_wrapper" data-delete_url="{% url djbo_delete rel.pk %}">
+                        <img src="/crop/140/140/{{ rel.image.url }}" class="img-thumbnail xapload_image"/>
+                        <button type="button" class="xapload_remove btn btn-danger btn-small">&times;</button>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <div class="xapload_wrapper xapload_add_form">
+                <div class="thumbnail">
+                    <form method="post" enctype="multipart/form-data">
+                        <input type="file" name="file" class="xapload_add_input"/>
+                        <button type="button" class="btn btn-primary btn-large"><span class="glyphicon glyphicon-plus"></span></button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

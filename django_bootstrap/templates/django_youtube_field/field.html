@@ -1,0 +1,5 @@
+<div class="col youtube_field_wrapper">
+    <iframe src="{% if video_id %}http://www.youtube.com/embed/{{ video_id }}{% endif %}" frameborder="0" allowfullscreen
+            class="youtube_field_iframe" {% if not video_id %}style="display: none{% endif %}"></iframe>
+    {{ input }}
+</div>

@@ -1,0 +1,59 @@
+.xapload_gallery {
+    overflow: hidden;
+    padding-bottom: 30px;
+}
+
+.xapload_wrapper, .xapload_wrapper  img {
+    width: 140px;
+    height: 140px;
+    cursor: pointer;
+}
+
+.xapload_add_form .thumbnail {
+    text-align: center;
+    min-height: 140px !important;
+}
+
+.xapload_wrapper {
+    float: left;
+    position: relative;
+}
+
+.xapload_wrapper:hover .xapload_remove {
+    display: block
+}
+
+.xapload_remove {
+    display: none;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 99999;
+}
+
+.xapload_add_form {
+
+    position: relative;
+    overflow: hidden;
+}
+
+.xapload_add_form input {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    cursor: pointer;
+    opacity: 0.0;
+    filter: alpha(opacity=0);
+    font-size: 300px;
+    height: 200px;
+}
+
+.x3apload_progress {
+    position: absolute;
+    font-size: 50px;
+    color: #525050;
+    top: 35px;
+    left: 28px;
+
+}

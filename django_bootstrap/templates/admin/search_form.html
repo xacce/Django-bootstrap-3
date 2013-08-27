@@ -1,0 +1,14 @@
+{% load i18n admin_static %}
+{% if cl.search_fields %}
+    <div id="toolbar" >
+
+        <div class="input-group">
+            <input type="text" class="form-control" name="{{ search_var }}" value="{{ cl.query }}" id="searchbar" placeholder="{% trans 'Search' %}">
+            <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="runsearch">{% trans 'Search' %}</button>
+            </span>
+        </div>
+        <!-- /input-group -->
+    </div>
+    {#    <script type="text/javascript">document.getElementById("searchbar").focus();</script>#}
+{% endif %}
